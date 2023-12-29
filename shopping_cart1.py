@@ -4,13 +4,15 @@ Developer   : Bindu
 Date        : 2023-12-26
 Description : In this project we are Capturing the Activities of the Products like Add To Cart,View Cart,Edit Cart etc.
                 1.Create Products
-                2.ADD To Cart
+                2.Add To Cart
                 3.View Cart
                 4.Edit Cart 
-                5.Clear Cart
-                6.Apply Discount
-                7.Get the Bill
-                8.Exit The Shopping Cart
+                5.No of visitors to the product
+                6.Clear Cart
+                7.Apply Discount
+                8.Get the Bill
+                9.Purchased date of the product
+                10.Exit The Shopping Cart
 
 Version     : v1.0
 
@@ -27,10 +29,12 @@ def display_cart():
     print("2.Add Task")
     print("3.View Tasks")
     print("4.Edit Cart")
-    print("5.Clear Cart")
-    print("6.Apply The Discount")
-    print("7.Get The Bill")
-    print("8.Exit from the Shooping Cart")
+    print("5.No Of Visitors To The Product")
+    print("6.Clear Cart")
+    print("7.Apply The Discount")
+    print("8.Get The Bill")
+    print("9.Purchased Date Of The Product")
+    print("10.Exit from the Shooping Cart")
     print("-"*50)
 
 def create_products():
@@ -61,8 +65,8 @@ def add_task():
         check=input("Do you need to verify the Product Details:")
         if check.upper()=='yes':
             view_cart()
-    except ValueError:
-        print("Exception",ValueError)
+    except ValueError as e:
+        print("Exception",e)
 
 
 def view_cart():
@@ -94,6 +98,15 @@ def edit_cart():
             view_cart()
     except ValueError as e:
         print("Exception:",e)
+
+def visits_product():
+    
+    no_of_visitors=input("No Of Visitors To The Product:")
+    visitstate=input("Do You Want To Know The No Of Visitors For Your Product(Y or N):")
+    if visitstate.upper()=='yes' or 'y':
+        print("No Of Visitors For Your Product Is:",no_of_visitors)
+    else:
+        print("No Visitors For Your Product...")    
 
 
 def clear_cart():
@@ -132,6 +145,17 @@ def get_bill():
     except ValueError as e:
         print("Exception:",e)
 
+def purchase_date():
+    
+        purchased_date=input("Purchased Date Of Your Product:")
+        datestate=input("Do You Want To Know The Purchased Date Of Your Product(Y or N):")
+        if datestate.upper()=='yes' or 'y':
+            print("Your Purchased Date Of Your Product is:",purchased_date)
+        else:
+            print("Go Back The Home...")
+
+
+
 def main():
     loopstatus=True
     while loopstatus:
@@ -147,17 +171,21 @@ def main():
             elif choice==4:
                 edit_cart()
             elif choice==5:
-                clear_cart()    
+                visits_product()          
             elif choice==6:
-                apply_discount()    
+                clear_cart()            
             elif choice==7:
-                get_bill()
-            elif choice==8:    
+                apply_discount()   
+            elif choice==8:  
+                get_bill() 
+            elif choice==9:
+                purchase_date()
+            elif choice==10:    
                 loopstatus=False
                 print("Exiting from the Shopping Cart..GoodBye!")
                 break
             else:
-                print("Invalid choice,please enter your choice between[1-8]:")
+                print("Invalid choice,please enter your choice between[1-10]:")
             continueState=input("\nDo You Want To Continue Again(Y Or N):")
             print(' ')
             if continueState == 'N' or continueState == 'n':
