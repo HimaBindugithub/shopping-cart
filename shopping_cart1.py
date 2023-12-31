@@ -12,7 +12,10 @@ Description : In this project we are Capturing the Activities of the Products li
                 7.Apply Discount
                 8.Get the Bill
                 9.Purchased date of the product
-                10.Exit The Shopping Cart
+                10.Return The Product
+                11.Exchange The Product
+                12.Delivery
+                13.Exit The Shopping Cart
 
 Version     : v1.0
 
@@ -20,7 +23,6 @@ Version     : v1.0
 
 global Products
 Products=[]
-
 def display_cart():
     print("="*50)
     print("\t******Shopping Cart*******")
@@ -34,37 +36,47 @@ def display_cart():
     print("7.Apply The Discount")
     print("8.Get The Bill")
     print("9.Purchased Date Of The Product")
-    print("10.Exit from the Shooping Cart")
+    print("10.Return The Product")
+    print("11.Exchange the product")
+    print("12.Delivery")
+    print("13.Exit from the Shopping Cart")
     print("-"*50)
 
 def create_products():
-    Products=[]
     Product={
-            "Product_No":input("Enter The Product Number:"),
+            "Product_No":int(input("Enter The Product Number:")),
             "Product_Name":input("Enter the Product Name:"),
+            "Product_type":input("Enter The Product Type:"),
             "Price":int(input("Enter the Price Of the Product:")),
-            "Exp_date":input("Enter the Expiry Date:"),
-            "Quantity":input("Enter The Quantity Of The Product:")
+            "Warrenty":input("Enter the Warrenty(in years):"),
+            "capacity":input("Enter The Capacity of The Product(in kg):"),
+            "Quantity":input("Enter The Quantity Of The Product:"),
+            "brand":input("Enter The Brand Of The Product:"),
+            "Decription":input("Provide Decription About Product:")
     }
-    # Products.append(Product)
-    print(Products)
+    
+    
+    print(Product)
    
 
 
-def add_task():
+def add_product():
     try:
-        Product=input("Enter The Product Number:")
+        Product_No=int(input("Enter The Product Number:"))
         Product_Name=input("Enter the Product Name:")
+        Product_type=input("Enter The Product Type:")
         Price=int(input("Enter the Price Of the Product:"))
-        Exp_date=input("Enter the Expiry Date:")
+        Warrenty=input("Enter the Warrenty(in years):")
+        capacity=input("Enter The Capacity of The Product(in kg):")
         Quantity=input("Enter The Quantity Of The Product:")
-        Product1={"Product_No":Product,"Product Name":Product_Name,"Price":Price,"Expiry date":Exp_date,"Quantity":Quantity}
+        brand=input("Enter The Brand Of The Product:")
+        Decription=input("Provide Decription About Product:")
+        Product1={"Product No":Product_No,"Product Name":Product_Name,"Product Type":Product_type,"Price":Price,"Warrenty":Warrenty,"Quantity":Quantity,"capacity":capacity,"brand":brand,"Decription":Decription}
         Products.append(Product1)
         print("Product has been added successfully")
-        print(Products)
-        check=input("Do you need to verify the Product Details:")
-        if check.upper()=='yes':
-            view_cart()
+        check=input("Do you need to verify the Product Details(Y or N):")
+        if check.upper()=='yes' or 'y':
+            print(Products)
     except ValueError as e:
         print("Exception",e)
 
@@ -78,24 +90,30 @@ def view_cart():
             for key,value in pro.items():
                 print(f"{key}:{value}")
     i=i+1
+    
+   
 
 
 def edit_cart():
     
     try:
-        Product=input("Enter The Product Number:")
+        Product_No=int(input("Enter The Product Number:"))
         Product_Name=input("Enter the Product Name:")
+        Product_type=input("Enter The Product Type:")
         Price=int(input("Enter the Price Of the Product:"))
-        Exp_date=input("Enter the Expiry Date:")
+        Warrenty=input("Enter the Warrenty(in years):")
+        capacity=input("Enter The Capacity of The Product(in kg):")
         Quantity=input("Enter The Quantity Of The Product:")
-        Product1={"Product_No":Product,"Product Name":Product_Name,"Price":Price,"Expiry date":Exp_date,"Quantity":Quantity}
-        Product1[input("Enter the key:")]=input("Enter value:")
+        brand=input("Enter The Brand Of The Product:")
+        Decription=input("Provide Decription About Product:")
+        Product={"Product No":Product_No,"Product Name":Product_Name,"Product Type":Product_type,"Price":Price,"Warrenty":Warrenty,"Quantity":Quantity,"capacity":capacity,"brand":brand,"Decription":Decription}
+        Product[input("Enter the key:")]=input("Enter value:")
         print('')
-        Products.append(Product1)
+        Products.append(Product)
         print("Product Status has been Updated")
         check=input("Do you need to verify the Product Details:")
         if check.upper()=='yes' or 'y':
-            view_cart()
+           print(Product)
     except ValueError as e:
         print("Exception:",e)
 
@@ -103,17 +121,16 @@ def visits_product():
     
     no_of_visitors=input("No Of Visitors To The Product:")
     visitstate=input("Do You Want To Know The No Of Visitors For Your Product(Y or N):")
-    if visitstate.upper()=='yes' or 'y':
+    if visitstate.upper()=='Y' or 'y':
         print("No Of Visitors For Your Product Is:",no_of_visitors)
-    else:
-        print("No Visitors For Your Product...")    
+     
 
 
 def clear_cart():
 
     print("\nThe Original Products Details in The List Dictionary Are : ", Products, end = "\n")
     clearState = input("\nDo You Want To Clear The Total Products Details (Y OR N) : ")
-    if clearState == 'Y' or clearState == 'y':
+    if clearState == 'Yes' or clearState == 'y':
         Products.clear()
         print("\nThe Elements After Clearing Are : ", Products, end = "\n")
     else:
@@ -154,6 +171,26 @@ def purchase_date():
         else:
             print("Go Back The Home...")
 
+def return_product():
+    returnstate=input("Do You Have The Option To Return The Product(Y or N):")
+    if returnstate.upper()=='yes' or 'y':
+        print("Yes You can return the product if any problem is there with the product")
+    else:
+        print("Nope!,Their is no return option available")    
+
+def exchange_product():
+    exchangestate=input("Do You Have The Option To Exchange The Product(Y or N):")  
+    if exchangestate.upper()=='yes' or 'y':
+        print("Yes You can exchange the product with another!")
+    else:
+        print("Nope!,Their is no exchange facility available in our website")          
+
+def delivery_shopping():
+    deliverystate=input("Will You Provide Delivery For The Products(Y or N):")
+    if deliverystate.upper()=='yes' or 'y':
+       print("Yup,Our Website Provides Free Delivery!")
+    else:
+        print("Nope!,Free Delivery Is Not Available")   
 
 
 def main():
@@ -165,7 +202,7 @@ def main():
             if choice==1:
                 create_products()
             elif choice==2:
-                add_task()
+                add_product()
             elif choice==3:
                 view_cart()
             elif choice==4:
@@ -180,12 +217,18 @@ def main():
                 get_bill() 
             elif choice==9:
                 purchase_date()
-            elif choice==10:    
+            elif choice==10:
+                return_product()
+            elif choice==11: 
+                exchange_product()
+            elif choice==12:
+                delivery_shopping()     
+            elif choice==13:    
                 loopstatus=False
                 print("Exiting from the Shopping Cart..GoodBye!")
                 break
             else:
-                print("Invalid choice,please enter your choice between[1-10]:")
+                print("Invalid choice,please enter your choice between[1-13]:")
             continueState=input("\nDo You Want To Continue Again(Y Or N):")
             print(' ')
             if continueState == 'N' or continueState == 'n':
